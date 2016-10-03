@@ -30,20 +30,27 @@ import android.support.v4.app.ActivityCompat;
 import android.support.v4.widget.CursorAdapter;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
+import android.text.Layout;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageButton;
 import android.widget.ImageView;
+import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import com.google.android.gms.analytics.HitBuilders;
 import com.google.android.gms.analytics.Tracker;
 
 import org.apache.commons.io.FilenameUtils;
+import org.w3c.dom.Text;
+
+import java.net.MalformedURLException;
+import java.net.URL;
 
 import me.kartikarora.transfersh.BuildConfig;
 import me.kartikarora.transfersh.R;
+import me.kartikarora.transfersh.activities.TransferActivity;
 import me.kartikarora.transfersh.contracts.FilesContract;
 
 /**
@@ -94,6 +101,7 @@ public class FileGridAdapter extends CursorAdapter {
         final String type = cursor.getString(typeCol);
         final String size = cursor.getString(sizeCol);
         final String url = cursor.getString(urlCol);
+
         holder.fileNameTextView.setText(name);
         String ext = FilenameUtils.getExtension(name);
         int identifier = context.getResources().getIdentifier("t" + ext, "drawable", context.getPackageName());
@@ -112,10 +120,21 @@ public class FileGridAdapter extends CursorAdapter {
                 String message = "Name: " + name + "\n" +
                         "File type: " + type + "\n" +
                         "URL: " + url;
-                new AlertDialog.Builder(activity)
-                        .setMessage(message)
-                        .setPositiveButton(android.R.string.ok, null)
-                        .create().show();
+
+                URL link = null;
+
+                try {
+                    link = new URL(url);
+                } catch (MalformedURLException e) {
+                    e.printStackTrace();
+                }
+
+                TransferActivity.setter(name, type, link);
+
+//                new AlertDialog.Builder(activity)
+//                        .setMessage(message)
+//                        .setPositiveButton(android.R.string.ok, null)
+//                        .create().show();
             }
         });
 

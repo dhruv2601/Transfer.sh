@@ -38,6 +38,7 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.GridView;
+import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import com.google.android.gms.ads.AdRequest;
@@ -54,6 +55,7 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.io.OutputStream;
+import java.net.URL;
 import java.util.ArrayList;
 
 import me.kartikarora.transfersh.BuildConfig;
@@ -86,6 +88,15 @@ public class TransferActivity extends AppCompatActivity implements LoaderManager
     private AdView mAdView;
     private SharedPreferences mSharedPreferences = null;
     private Cursor mData = null;
+    public static TextView namePut;
+    public static TextView typePut;
+    public static TextView urlPut;
+    public static View view;
+    public static FloatingActionButton okBtn;
+    public static FloatingActionButton fab1;
+    public static RelativeLayout rl;
+    public static RelativeLayout rl1;
+    public static FloatingActionButton uploadFileButton;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -94,9 +105,28 @@ public class TransferActivity extends AppCompatActivity implements LoaderManager
         setContentView(R.layout.activity_transfer);
         mNoFilesTextView = (TextView) findViewById(R.id.no_files_text_view);
         mFileItemsGridView = (GridView) findViewById(R.id.file_grid_view);
-        FloatingActionButton uploadFileButton = (FloatingActionButton) findViewById(R.id.upload_file_fab);
         mCoordinatorLayout = (CoordinatorLayout) findViewById(R.id.coordinator_layout);
         mAdView = (AdView) findViewById(R.id.banner_ad_view);
+
+        namePut = (TextView) findViewById(R.id.namePut);
+        typePut = (TextView) findViewById(R.id.typePut);
+        urlPut = (TextView) findViewById(R.id.urlPut);
+
+        uploadFileButton = (FloatingActionButton) findViewById(R.id.upload_file_fab);
+        okBtn = (FloatingActionButton) findViewById(R.id.okBtn);
+        rl = (RelativeLayout) findViewById(R.id.rl);
+        rl1 = (RelativeLayout) findViewById(R.id.rl1);
+
+        okBtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                rl.setVisibility(View.GONE);
+                rl1.setVisibility(View.VISIBLE);
+                uploadFileButton.setVisibility(View.VISIBLE);
+            }
+        });
+
+
 
         if (uploadFileButton != null) {
             uploadFileButton.setOnClickListener(new View.OnClickListener() {
@@ -323,4 +353,15 @@ public class TransferActivity extends AppCompatActivity implements LoaderManager
         }
 
     }
+
+    public static void setter(String name,String type, URL url)
+    {
+        namePut.setText(name);
+        typePut.setText(type);
+        urlPut.setText(url.toString());
+        rl.setVisibility(View.VISIBLE);
+        rl1.setVisibility(View.GONE);
+        uploadFileButton.setVisibility(View.GONE);
+    }
+
 }

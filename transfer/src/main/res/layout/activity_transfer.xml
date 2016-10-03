@@ -23,6 +23,123 @@
     tools:context=".activities.TransferActivity">
 
     <RelativeLayout
+        android:id="@+id/rl"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:visibility="gone">
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_marginTop="170dp"
+            android:orientation="vertical">
+
+            <TextView
+                android:id="@+id/bullet1"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="20dp"
+                android:layout_marginTop="30dp"
+                android:text="\u25CF"
+                android:textSize="25dp" />
+
+            <TextView
+                android:id="@+id/name"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignBaseline="@+id/bullet1"
+                android:layout_alignBottom="@+id/bullet1"
+                android:layout_marginStart="15dp"
+                android:layout_toEndOf="@+id/bullet1"
+                android:text="Name :"
+                android:textColor="@android:color/holo_blue_light"
+                android:textSize="20dp" />
+
+            <TextView
+                android:id="@+id/namePut"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignBaseline="@+id/name"
+                android:layout_alignBottom="@+id/name"
+                android:layout_marginStart="12dp"
+                android:layout_toEndOf="@+id/name"
+                android:textSize="20sp" />
+
+            <TextView
+                android:id="@+id/bullet2"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/bullet1"
+                android:layout_marginLeft="20dp"
+                android:layout_marginTop="30dp"
+                android:text="\u25CF"
+                android:textSize="25dp" />
+
+            <TextView
+                android:id="@+id/type"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignBottom="@+id/bullet2"
+                android:layout_alignStart="@+id/name"
+                android:text="Type :"
+                android:textColor="@android:color/holo_blue_light"
+                android:textSize="20dp" />
+
+            <TextView
+                android:id="@+id/typePut"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignBaseline="@+id/type"
+                android:layout_alignBottom="@+id/type"
+                android:layout_marginStart="12dp"
+                android:layout_toEndOf="@+id/type"
+                android:textSize="20sp" />
+
+            <TextView
+                android:id="@+id/bullet3"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/bullet2"
+                android:layout_marginLeft="20dp"
+                android:layout_marginTop="30dp"
+                android:text="\u25CF"
+                android:textSize="25dp" />
+
+            <TextView
+                android:id="@+id/URL"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignStart="@+id/type"
+                android:layout_alignTop="@+id/bullet3"
+                android:text="URL  :"
+                android:textColor="@android:color/holo_blue_light"
+                android:textSize="20dp" />
+
+            <TextView
+                android:id="@+id/urlPut"
+                android:autoLink="web"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignBaseline="@+id/URL"
+                android:layout_alignBottom="@+id/URL"
+                android:layout_toEndOf="@+id/URL"
+                android:textSize="20sp" />
+
+        </RelativeLayout>
+
+        <android.support.design.widget.FloatingActionButton
+            android:id="@+id/okBtn"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="27dp"
+            android:clickable="true"
+            ads:fabSize="mini"
+            ads:srcCompat="@drawable/ic_back" />
+
+    </RelativeLayout>
+
+    <RelativeLayout
+        android:id="@+id/rl1"
         android:layout_width="match_parent"
         android:layout_height="match_parent">
 
@@ -49,18 +166,24 @@
             android:layout_height="wrap_content"
             android:layout_centerInParent="true"
             android:text="@string/no_files_uploaded"
-            android:visibility="gone"
-            android:textSize="28sp" />
+            android:textSize="28sp"
+            android:visibility="gone" />
+
     </RelativeLayout>
+
 
     <android.support.design.widget.FloatingActionButton
         android:id="@+id/upload_file_fab"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_gravity="bottom|end"
+        android:layout_gravity="top|left"
         android:layout_margin="@dimen/activity_vertical_margin"
+        ads:layout_anchor="@+id/rl1"
+        ads:layout_anchorGravity="bottom|right"
         app:fabSize="normal"
         app:layout_behavior=".behaviours.FABScrollAwareBehavior"
         app:srcCompat="@drawable/ic_file_upload"
         app:useCompatPadding="true" />
+
+
 </android.support.design.widget.CoordinatorLayout>
